@@ -88,4 +88,37 @@ return require('packer').startup(function(use)
   use {"akinsho/toggleterm.nvim", tag = '*', config = function()
     require("toggleterm").setup()
   end}
+
+  use({
+    "jackMort/ChatGPT.nvim",
+    config = function()
+      require("chatgpt").setup({
+        welcome_message = "",
+        chat_window = {
+          filetype = "moisygpt",
+          border = {
+            highlight = "FloatBorder",
+            style = "rounded",
+            text = {
+              top = " Moisy ",
+            },
+          },
+        },
+        openai_params = {
+          model = "text-davinci-003",
+          frequency_penalty = 0,
+          presence_penalty = 0,
+          max_tokens = 900,
+          temperature = 0,
+          top_p = 1,
+          n = 1,
+        },
+      })
+    end,
+    requires = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim"
+    }
+  })
 end)
