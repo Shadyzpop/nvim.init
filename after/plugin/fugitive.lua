@@ -22,6 +22,11 @@ autocmd("BufWinEnter", {
             vim.cmd('Git pull --rebase')
         end, opts)
 
+        -- checkout interactive
+        vim.keymap.set("n", "<leader>ci", function()
+            vim.cmd('Telescope git_branches')
+        end, opts)
+
         -- open in browser
         vim.keymap.set("n", "<leader>o", function()
             vim.cmd('!gh repo view --web')
