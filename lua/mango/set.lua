@@ -8,6 +8,7 @@ g.mapleader = " "
 set.guicursor = ""
 set.nu = true
 set.relativenumber = true
+set.mouse = ""
 
 set.tabstop = TAB_WIDTH
 set.softtabstop = TAB_WIDTH
