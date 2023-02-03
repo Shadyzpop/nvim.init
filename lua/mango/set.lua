@@ -35,3 +35,6 @@ set.isfname:append("@-@")
 
 set.updatetime = 50
 set.colorcolumn = "80"
+
+vim.cmd 'colorscheme material'
+vim.g.material_style = "deep ocean"

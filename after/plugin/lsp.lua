@@ -21,7 +21,6 @@ lsp.configure('sumneko_lua', {
   }
 })
 
-
 local cmp = require("cmp")
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
 local cmp_mappings = lsp.defaults.cmp_mappings({
@@ -29,6 +28,9 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
   ['<S-Tab'] = cmp.mapping.select_prev_item(cmp_select),
   ['<C-y'] = cmp.mapping.confirm({ select = true }),
   ['<C-Space>'] = cmp.mapping.complete(),
+  ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+  ['<C-d>'] = cmp.mapping.scroll_docs(4),
+  ['<C-e>'] = cmp.mapping.close(),
 })
 
 cmp_mappings['<cr>'] = nil
@@ -70,5 +72,18 @@ end)
 lsp.setup()
 
 vim.diagnostic.config({
-    virtual_text = true,
+  virtual_text = true,
 })
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true
+}
+local language_servers = require("lspconfig").util.available_servers() -- or list servers manually like {'gopls', 'clangd'}
+for _, ls in ipairs(language_servers) do
+    require('lspconfig')[ls].setup({
+        capabilities = capabilities
+        -- you can add other fields for setting up lsp server in this table
+    })
+end
