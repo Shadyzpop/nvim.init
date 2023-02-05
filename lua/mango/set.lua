@@ -3,7 +3,6 @@ local g = vim.g
 
 local TAB_WIDTH = 2
 
-g.mapleader = " "
 
 set.guicursor = ""
 set.nu = true
