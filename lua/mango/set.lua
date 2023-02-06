@@ -3,7 +3,6 @@ local g = vim.g
 
 local TAB_WIDTH = 2
 
-
 set.guicursor = ""
 set.nu = true
 set.relativenumber = true
@@ -37,3 +36,5 @@ set.colorcolumn = "80"
 
 vim.cmd 'colorscheme material'
 vim.g.material_style = "deep ocean"
+
+vim.api.nvim_set_keymap("i", "<Space>", string.rep(" ", TAB_WIDTH), {noremap = true, silent = true})

@@ -11,29 +11,35 @@ lsp.ensure_installed({
 })
 
 -- Fix Undefined global 'vim'
-lsp.configure('sumneko_lua', {
-  settings = {
-    Lua = {
-      diagnostics = {
-        globals = { 'vim' }
-      }
-    }
-  }
-})
+-- lsp.configure('sumneko_lua', {
+--   settings = {
+--     Lua = {
+--       diagnostics = {
+--         globals = { 'vim' }
+--       }
+--     }
+--   }
+-- })
 
 local cmp = require("cmp")
-local cmp_select = {behavior = cmp.SelectBehavior.Select}
 local cmp_mappings = lsp.defaults.cmp_mappings({
-  ['<Tab>'] = cmp.mapping.select_next_item(cmp_select),
-  ['<S-Tab'] = cmp.mapping.select_prev_item(cmp_select),
+  ['TAB'] = cmp.mapping(function(fallback)
+    if cmp.visible() then
+      cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+    elseif require('luasnip').expand_or_jumpable() then
+      require('luasnip').expand_or_jump()
+    else
+      fallback()
+    end
+  end, { 'i', 's' }),
+  ['<S-Tab'] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), { "i", "s" }),
   ['<C-y'] = cmp.mapping.confirm({ select = true }),
   ['<C-Space>'] = cmp.mapping.complete(),
   ['<C-u>'] = cmp.mapping.scroll_docs(-4),
   ['<C-d>'] = cmp.mapping.scroll_docs(4),
   ['<C-e>'] = cmp.mapping.close(),
+  ['<CR>'] = vim.NIL,
 })
-
-cmp_mappings['<cr>'] = nil
 
 lsp.set_preferences({
   suggest_lsp_servers = false,
@@ -46,7 +52,7 @@ lsp.set_preferences({
 })
 
 lsp.setup_nvim_cmp({
-  mapping = cmp_mappings
+  mapping = cmp_mappings,
 })
 
 lsp.on_attach(function(client, bufnr)
@@ -69,6 +75,7 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
 end)
 
+lsp.nvim_workspace()
 lsp.setup()
 
 vim.diagnostic.config({
