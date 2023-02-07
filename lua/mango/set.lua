@@ -1,4 +1,5 @@
 local set = vim.opt
+---@diagnostic disable-next-line: unused-local
 local g = vim.g
 
 local TAB_WIDTH = 2
@@ -33,6 +34,7 @@ set.isfname:append("@-@")
 
 set.updatetime = 50
 set.colorcolumn = "80"
+vim.cmd("highlight ColorColumn ctermbg=0 guibg=#1e222a")
 set.cmdheight = 1
 -- set.showcmd = false
 
