@@ -19,4 +19,14 @@ return {
       "kevinhwang91/promise-async",
     },
   },
+
+  -- theme
+  -- {
+  --   "marko-cerovac/material.nvim",
+  -- },
+  {
+    "projekt0n/github-nvim-theme",
+    tag = "v0.0.7",
+  },
+
 }

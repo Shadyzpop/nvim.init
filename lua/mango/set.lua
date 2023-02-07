@@ -33,8 +33,7 @@ set.isfname:append("@-@")
 
 set.updatetime = 50
 set.colorcolumn = "80"
+set.cmdheight = 1
+-- set.showcmd = false
 
-vim.cmd 'colorscheme material'
-vim.g.material_style = "deep ocean"
-
-vim.api.nvim_set_keymap("i", "<Space>", string.rep(" ", TAB_WIDTH), {noremap = true, silent = true})
+-- vim.api.nvim_set_keymap("i", "<Space>", string.rep(" ", TAB_WIDTH), {noremap = true, silent = true})

@@ -72,18 +72,6 @@ return {
   {
     "akinsho/nvim-toggleterm.lua",
     version = "*",
-    init = function()
-      require("toggleterm").setup({
-        size = 20,
-        shade_filetypes = {},
-        shade_terminals = true,
-        shading_factor = 1,
-        start_in_insert = true,
-        persist_size = true,
-        direction = "horizontal",
-        close_on_exit = true,
-      })
-    end,
   },
 
   -- lualine
@@ -93,11 +81,6 @@ return {
       "nvim-tree/nvim-web-devicons",
       lazy = true,
     },
-  },
-
-  -- theme
-  {
-    "marko-cerovac/material.nvim",
   },
 
   -- git
