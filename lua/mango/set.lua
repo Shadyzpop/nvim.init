@@ -34,7 +34,6 @@ set.isfname:append("@-@")
 
 set.updatetime = 50
 set.colorcolumn = "80"
-vim.cmd("highlight ColorColumn ctermbg=0 guibg=#1e222a")
 set.cmdheight = 1
 -- set.showcmd = false
 

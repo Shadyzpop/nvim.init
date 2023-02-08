@@ -6,3 +6,6 @@ vim.keymap.set("i", "<C-h>", "<Plug>(copilot-prev)", {silent = true})
 vim.keymap.set("i", "<C-o>", "<cmd>Copilot panel<cr>", {noremap = true, silent = true})
 -- vim.keymap.set("n", "<C-o>", "<cmd>Copilot panel<cr>", {noremap = true, silent = true})
 vim.g.copilot_no_tab_map = true
+vim.g.copilot_filetypes = {
+  ["dap-repl"] = false,
+}

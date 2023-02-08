@@ -15,6 +15,7 @@ local avail_themes = {
   "light_colorblind",
 }
 
+vim.cmd("highlight ColorColumn ctermbg=0 guibg=#1e222a")
 -- toggle themes from avail_themes
 vim.keymap.set('n', '<leader>th', function ()
   local current_theme = vim.g.github_theme_style
