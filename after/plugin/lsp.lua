@@ -23,7 +23,7 @@ lsp.ensure_installed({
 
 local cmp = require("cmp")
 local cmp_mappings = lsp.defaults.cmp_mappings({
-  ['TAB'] = cmp.mapping(function(fallback)
+  ['<Tab>'] = cmp.mapping(function(fallback)
     if cmp.visible() then
       cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
     elseif require('luasnip').expand_or_jumpable() then
