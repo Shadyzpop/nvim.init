@@ -4,7 +4,6 @@ require("github-theme").setup({
   dark_float = true,
 })
 
--- dark/dimmed/dark_default/dark_colorblind/light/light_default/light_colorblind (default: dark)
 local avail_themes = {
   "dark",
   "dimmed",

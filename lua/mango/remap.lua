@@ -1,8 +1,8 @@
 -- nav in insert
--- vim.keymap.set("i", "<C-h>", "<Left>")
+vim.keymap.set("i", "<C-h>", "<Left>")
+vim.keymap.set("i", "<C-l>", "<Right>")
 -- vim.keymap.set("i", "<C-j>", "<Down>")
 -- vim.keymap.set("i", "<C-k>", "<Up>")
--- vim.keymap.set("i", "<C-l>", "<Right>")
 
 -- general stuff
 vim.keymap.set("n", "<Esc>", "<cmd>noh<cr>")
@@ -31,3 +31,8 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 vim.keymap.set("n", "<leader>tk", "<cmd>Telescope keymaps<cr>")
+
+vim.keymap.set("n", "x", '"_x')
+vim.keymap.set("n", "dd", '"_dd')
+
+vim.keymap.set("n", "Q", "<nop>")

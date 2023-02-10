@@ -9,7 +9,7 @@ vim.keymap.set('n', '<leader>gp', function()
 	builtin.grep_string({ search = vim.fn.input("Grep > ") })
 end)
 
-vim.keymap.set('n', '<leader>fzf', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>rg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>ss', function()
   builtin.spell_suggest(
@@ -25,8 +25,6 @@ end)
 
 -- lsp
 vim.keymap.set('n', '<leader>ld', builtin.diagnostics, {})
-vim.keymap.set('n', '<leader>lr', builtin.lsp_references, {})
-
 vim.keymap.set('n', '<leader>lr', function ()
   builtin.lsp_references(
     themes.get_cursor {
