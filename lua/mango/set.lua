@@ -7,7 +7,9 @@ local TAB_WIDTH = 2
 set.guicursor = ""
 set.nu = true
 set.relativenumber = true
-set.mouse = ""
+
+-- disable mouse
+set.mouse = nil
 
 set.tabstop = TAB_WIDTH
 set.softtabstop = TAB_WIDTH
@@ -38,3 +40,7 @@ set.cmdheight = 1
 -- set.showcmd = false
 
 -- vim.api.nvim_set_keymap("i", "<Space>", string.rep(" ", TAB_WIDTH), {noremap = true, silent = true})
+-- let g:omni_sql_default_compl_type = 'syntax'
+--
+g.omni_sql_default_compl_type = "syntax"
+g.ftplugin_sql_omni_key = "<C-x><C-o>"

@@ -36,3 +36,14 @@ vim.keymap.set("n", "x", '"_x')
 vim.keymap.set("n", "dd", '"_dd')
 
 vim.keymap.set("n", "Q", "<nop>")
+
+vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("v", ">", ">gv")
+
+vim.keymap.set("n", "<leader>wk", ":resize -2<CR>")
+vim.keymap.set("n", "<leader>wj", ":resize +2<CR>")
+vim.keymap.set("n", "<leader>wh", ":vertical resize -2<CR>")
+vim.keymap.set("n", "<leader>wl", ":vertical resize +2<CR>")
+vim.keymap.set("n", "<leader>w=", ":vertical resize 80<CR>")
+
+vim.keymap.set("i", "<C-c>", "<Esc>")
