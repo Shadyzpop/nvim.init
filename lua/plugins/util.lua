@@ -20,7 +20,7 @@ return {
   --   },
   -- },
 
-  -- theme
+  -- themes
   -- {
   --   "marko-cerovac/material.nvim",
   -- },
@@ -28,5 +28,12 @@ return {
     "projekt0n/github-nvim-theme",
     tag = "v0.0.7",
   },
+  {
+    "rebelot/kanagawa.nvim",
+  },
 
+  -- highlighter
+  {
+    "JellyApple102/easyread.nvim",
+  },
 }

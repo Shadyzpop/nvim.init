@@ -8,7 +8,7 @@ require("toggleterm").setup({
   end,
   shade_filetypes = {},
   shade_terminals = true,
-  shading_factor = 1,
+  shading_factor = -40,
   start_in_insert = true,
   persist_size = true,
   persist_mode = true,
@@ -18,7 +18,6 @@ require("toggleterm").setup({
   autoscroll = true,
 })
 
--- vim.keymap.del('n', '<C-\\>')
 vim.keymap.set('n', '<leader>tt', '<cmd>ToggleTerm<cr>')
 vim.keymap.set('n', '<leader>ts', '<cmd>ToggleTerm direction=horizontal<cr>')
 vim.keymap.set('n', '<leader>tv', '<cmd>ToggleTerm direction=vertical<cr>')
@@ -27,13 +26,13 @@ vim.keymap.set('n', '<leader>tv', '<cmd>ToggleTerm direction=vertical<cr>')
 vim.keymap.set('n', '<leader>tq', '<cmd>1TermExec cmd="exit"<cr>')
 
 vim.keymap.set('n', '<leader>tx', function ()
-  cmd = vim.fn.input('Command: ')
+  local cmd = vim.fn.input('Command: ')
 
   if cmd == '' then
     return
   end
 
-  vim.cmd('1TermExec cmd="' .. cmd .. '"')
+  vim.cmd('1TermExec cmd="' .. cmd .. '" <CR>')
 end)
 
 vim.keymap.set('t', '<ESC>', '<C-\\><C-N>')
