@@ -1,5 +1,5 @@
 require("toggleterm").setup({
-  size = function (term)
+  size = function(term)
     if term.direction == "horizontal" then
       return 8
     elseif term.direction == "vertical" then
@@ -25,7 +25,7 @@ vim.keymap.set('n', '<leader>tv', '<cmd>ToggleTerm direction=vertical<cr>')
 -- send exit to term if any
 vim.keymap.set('n', '<leader>tq', '<cmd>1TermExec cmd="exit"<cr>')
 
-vim.keymap.set('n', '<leader>tx', function ()
+vim.keymap.set('n', '<leader>tx', function()
   local cmd = vim.fn.input('Command: ')
 
   if cmd == '' then

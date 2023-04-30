@@ -19,11 +19,11 @@ vim.keymap.set('n', '<Leader>dr', function() dap.repl.open() end)
 vim.keymap.set('n', '<Leader>dl', function() dap.run_last() end)
 vim.keymap.set('n', '<leader>dk', function() dap.hover() end)
 
-vim.keymap.set({'n', 'v'}, '<Leader>dh', function()
+vim.keymap.set({ 'n', 'v' }, '<Leader>dh', function()
   require('dap.ui.widgets').hover()
 end)
 
-vim.keymap.set({'n', 'v'}, '<Leader>dp', function()
+vim.keymap.set({ 'n', 'v' }, '<Leader>dp', function()
   require('dap.ui.widgets').preview()
 end)
 
