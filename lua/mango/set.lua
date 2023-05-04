@@ -2,6 +2,8 @@ local set = vim.opt
 ---@diagnostic disable-next-line: unused-local
 local g = vim.g
 
+g.mapleader = " "
+
 local TAB_WIDTH = 2
 
 set.guicursor = ""
@@ -38,6 +40,9 @@ set.updatetime = 50
 set.colorcolumn = "80"
 set.cmdheight = 1
 -- set.showcmd = false
+
+set.splitbelow = true
+set.splitright = true
 
 -- vim.api.nvim_set_keymap("i", "<Space>", string.rep(" ", TAB_WIDTH), {noremap = true, silent = true})
 -- let g:omni_sql_default_compl_type = 'syntax'

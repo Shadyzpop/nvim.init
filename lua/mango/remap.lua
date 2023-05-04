@@ -1,3 +1,17 @@
+-- Some keymaps
+--
+-- zt - set cursor line to top
+-- zb - set cursor line to bottom
+--
+-- gf - go to file under cursor
+--
+--
+-- -- multi file replace
+-- arg /some/path/**/*
+-- argdo %s/old/new/ge
+-- argdo update
+--
+--
 -- nav in insert
 vim.keymap.set("i", "<C-h>", "<Left>")
 vim.keymap.set("i", "<C-l>", "<Right>")
@@ -31,6 +45,8 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 vim.keymap.set("n", "<leader>tk", "<cmd>Telescope keymaps<cr>")
+
+vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
 vim.keymap.set("n", "x", '"_x')
 vim.keymap.set("n", "dd", '"_dd')
