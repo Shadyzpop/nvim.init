@@ -22,6 +22,14 @@ return {
     },
   },
 
+  -- null-ls
+  -- {
+  --   "jose-elias-alvarez/null-ls.nvim",
+  --   requires = {
+  --     "nvim-lua/plenary.nvim",
+  --   },
+  -- },
+
   -- copilot.nvim
   "github/copilot.vim",
 
@@ -86,5 +94,38 @@ return {
   -- git
   {
     "tpope/vim-fugitive",
+  },
+
+  -- trouble
+  {
+    "folke/trouble.nvim",
+    init = function()
+      require("trouble").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end,
+  },
+
+  -- lsp doc splitview
+  {
+    "amrbashir/nvim-docs-view",
+    lazy = true,
+    cmd = { "DocsViewToggle" },
+    config = function()
+      require("docs-view").setup {
+        position = "bottom",
+        height = 8,
+      }
+    end
+  },
+
+  -- harpoon
+  {
+    "ThePrimeagen/harpoon",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
   },
 }

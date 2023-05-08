@@ -1,4 +1,5 @@
 require("telescope").load_extension("fzf")
+require("telescope").load_extension('harpoon')
 
 local builtin = require('telescope.builtin')
 local themes = require('telescope.themes')
