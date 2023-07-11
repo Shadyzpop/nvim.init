@@ -2,13 +2,13 @@
 -- vim.cmd([[autocmd TextChanged,TextChangedI <buffer> silent write]])
 
 -- auto format on save
-vim.api.nvim_create_autocmd("BufWritePre", {
-  group = vim.api.nvim_create_augroup("BufAutoFormat", { clear = true }),
-  callback = function()
-    vim.cmd([[%s/\s\+$//e]])
-    vim.lsp.buf.format()
-  end
-})
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--   group = vim.api.nvim_create_augroup("BufAutoFormat", { clear = true }),
+--   callback = function()
+--     vim.cmd([[%s/\s\+$//e]])
+--     vim.lsp.buf.format()
+--   end
+-- })
 
 -- exit terminal when quitting nvim
 -- vim.api.nvim_create_autocmd("TermClose", {

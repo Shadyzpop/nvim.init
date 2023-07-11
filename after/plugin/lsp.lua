@@ -1,5 +1,8 @@
 local lsp = require('lsp-zero')
 
+local lspconfig = require('lspconfig')
+local configs = require('lspconfig.configs')
+
 lsp.preset('recommended')
 
 lsp.ensure_installed({
@@ -9,7 +12,7 @@ lsp.ensure_installed({
   "gopls",
   "cssls",
   "pylsp",
-  "solidity",
+  -- "solidity",
   "svelte",
   "tailwindcss",
 })
@@ -78,6 +81,15 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
   vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
 end)
+
+configs.solidity = {
+  default_config = {
+    cmd = { 'nomicfoundation-solidity-language-server', '--stdio' },
+    filetypes = { 'solidity' },
+    root_dir = lspconfig.util.find_git_ancestor,
+    single_file_support = true,
+  },
+}
 
 lsp.nvim_workspace()
 lsp.setup()

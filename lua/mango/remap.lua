@@ -63,3 +63,9 @@ vim.keymap.set("n", "<leader>wl", ":vertical resize +2<CR>")
 vim.keymap.set("n", "<leader>w=", ":vertical resize 80<CR>")
 
 vim.keymap.set("i", "<C-c>", "<Esc>")
+
+-- tmux
+-- local
+vim.keymap.set("n", "<leader>pc", function()
+  local ses = vim.fn.input("session name: ")
+end)
