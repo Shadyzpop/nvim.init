@@ -1,9 +1,6 @@
 local harpoon = require("harpoon")
 local mark = require("harpoon.mark")
 local ui = require("harpoon.ui")
-local term = require("harpoon.term")
-local cmd = require('harpoon.cmd-ui')
-local tmux = require("harpoon.tmux")
 
 harpoon.setup({
   global_settings = {
@@ -31,6 +28,12 @@ vim.keymap.set('n', '<leader>3', function()
 end)
 vim.keymap.set('n', '<leader>4', function()
   ui.nav_file(4)
+end)
+vim.keymap.set('n', '<leader>5', function()
+  ui.nav_file(5)
+end)
+vim.keymap.set('n', '<leader>6', function()
+  ui.nav_file(6)
 end)
 
 vim.keymap.set('n', '<C-l>', function()
