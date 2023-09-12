@@ -21,12 +21,14 @@ return {
       { "L3MON4D3/LuaSnip" },
       { "rafamadriz/friendly-snippets" },
     },
+    lazy = false,
   },
 
   -- treesitter
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
+    lazy = false
   },
 
   -- lsp doc splitview

@@ -89,13 +89,19 @@ ins_left {
 ins_left {
   -- mode component
   function()
-    return ''
+    local mode_char = {
+      i = 'I',
+      n = 'N',
+      c = 'C',
+      V = 'V',
+    }
+    return mode_char[vim.fn.mode()]
   end,
   color = function()
     -- auto change color according to neovims mode
     local mode_color = {
-      n = colors.red,
-      i = colors.green,
+      n = colors.green,
+      i = colors.red,
       v = colors.blue,
       [''] = colors.blue,
       V = colors.blue,
@@ -127,7 +133,9 @@ ins_left {
 }
 
 ins_left {
-  'filename',
+  function()
+    return vim.fn.expand('%:p')
+  end,
   cond = conditions.buffer_not_empty,
   color = { fg = colors.magenta, gui = 'bold' },
 }

@@ -7,5 +7,6 @@ return {
       { "nvim-telescope/telescope-dap.nvim" },
       { "mxsdev/nvim-dap-vscode-js" },
     },
+    lazy = false,
   },
 }
