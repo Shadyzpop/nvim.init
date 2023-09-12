@@ -95,7 +95,8 @@ ins_left {
       c = 'C',
       V = 'V',
     }
-    return mode_char[vim.fn.mode()]
+    -- mode or default nothing
+    return mode_char[vim.fn.mode()] or ' * '
   end,
   color = function()
     -- auto change color according to neovims mode
@@ -134,7 +135,9 @@ ins_left {
 
 ins_left {
   function()
-    return vim.fn.expand('%:p')
+    local current_directory = (vim.fn.getcwd() .. '/'):gsub('-', '')
+    local p_dis = vim.fn.expand('%:p'):gsub('-', ''):gsub(' ', ''):gsub(current_directory, '')
+    return p_dis
   end,
   cond = conditions.buffer_not_empty,
   color = { fg = colors.magenta, gui = 'bold' },
@@ -185,7 +188,7 @@ ins_left {
     end
     return msg
   end,
-  icon = 'LSP:',
+  icon = '>>',
   color = { fg = '#ffffff', gui = 'bold' },
 }
 
