@@ -28,7 +28,15 @@ lsp.ensure_installed({
 --   }
 -- })
 
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+require'nvim-treesitter.configs'.setup {
+  autotag = {
+    enable = true,
+  }
+}
+require('nvim-ts-autotag').setup()
 local cmp = require("cmp")
+
 local cmp_mappings = lsp.defaults.cmp_mappings({
   ['<Tab>'] = cmp.mapping(function(fallback)
     if cmp.visible() then
@@ -47,6 +55,11 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
   ['<C-e>'] = cmp.mapping.close(),
   ['<CR>'] = vim.NIL,
 })
+
+cmp.event:on(
+  'confirm_done',
+  cmp_autopairs.on_confirm_done()
+)
 
 lsp.set_preferences({
   suggest_lsp_servers = false,

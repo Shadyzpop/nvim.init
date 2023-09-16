@@ -28,6 +28,13 @@ return {
   -- autopairs
   {
     "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    opts = {}
+  },
+
+  -- autopairs tags
+  {
+    "windwp/nvim-ts-autotag"
   },
 
   -- surround
