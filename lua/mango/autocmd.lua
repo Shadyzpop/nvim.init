@@ -51,3 +51,27 @@ vim.api.nvim_create_autocmd('VimLeave', {
     vim.cmd('silent! wa')
   end
 })
+
+-- on buff enter and lsp active, show symbols
+vim.api.nvim_create_autocmd('BufEnter', {
+  group    = 'bufcheck',
+  pattern  = '*',
+  callback = function()
+    local currwin = vim.api.nvim_get_current_win()
+    local bufnr = vim.api.nvim_get_current_buf()
+    vim.defer_fn(function()
+      if vim.lsp.buf_get_clients(bufnr) ~= nil then
+        -- if the outline buffer doesn't exist, or if its hidden open it
+        if vim.fn.bufexists('OUTLINE') == 0 or vim.fn.bufwinnr('OUTLINE') == -1 then
+          vim.cmd('SymbolsOutlineOpen')
+          -- change the focus back to the original window
+          vim.defer_fn(function()
+            vim.api.nvim_set_current_win(currwin)
+          end, 200)
+        end
+      else
+        vim.cmd('SymbolsOutlineClose')
+      end
+    end, 50)
+  end
+})
