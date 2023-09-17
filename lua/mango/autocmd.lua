@@ -1,25 +1,14 @@
--- autocmd
--- vim.cmd([[autocmd TextChanged,TextChangedI <buffer> silent write]])
+vim.api.nvim_create_augroup('bufcheck', { clear = true })
 
 -- auto format on save
--- vim.api.nvim_create_autocmd("BufWritePre", {
---   group = vim.api.nvim_create_augroup("BufAutoFormat", { clear = true }),
---   callback = function()
---     vim.cmd([[%s/\s\+$//e]])
---     vim.lsp.buf.format()
---   end
--- })
-
--- exit terminal when quitting nvim
--- vim.api.nvim_create_autocmd("TermClose", {
---   group = vim.api.nvim_create_augroup("TermClose", { clear = true }),
---   pattern = "*",
---   callback = function()
---     vim.cmd("silent! !kill -9 $(ps -o ppid= -p $PPID)")
---   end
--- })
-
-vim.api.nvim_create_augroup('bufcheck', { clear = true })
+vim.api.nvim_create_autocmd("BufWritePre", {
+  group = vim.api.nvim_create_augroup("BufAutoFormat", { clear = true }),
+  pattern = "*.js,*.ts,*.tsx,*.jsx,*.lua",
+  callback = function()
+    vim.cmd([[%s/\s\+$//e]])
+    vim.lsp.buf.format()
+  end
+})
 
 -- return to the last edit position when opening files
 vim.api.nvim_create_autocmd('BufReadPost', {
@@ -60,18 +49,17 @@ vim.api.nvim_create_autocmd('BufEnter', {
     local currwin = vim.api.nvim_get_current_win()
     local bufnr = vim.api.nvim_get_current_buf()
     vim.defer_fn(function()
-      if vim.lsp.buf_get_clients(bufnr) ~= nil then
-        -- if the outline buffer doesn't exist, or if its hidden open it
-        if vim.fn.bufexists('OUTLINE') == 0 or vim.fn.bufwinnr('OUTLINE') == -1 then
-          vim.cmd('SymbolsOutlineOpen')
-          -- change the focus back to the original window
-          vim.defer_fn(function()
-            vim.api.nvim_set_current_win(currwin)
-          end, 200)
-        end
-      else
-        vim.cmd('SymbolsOutlineClose')
+      -- if the outline buffer doesn't exist, or if its hidden open it
+      if vim.fn.bufexists('DocsView') == 0 or vim.fn.bufwinnr('DocsView') == -1 then
+        -- print('DocsViewOpen')
       end
-    end, 50)
+      if vim.fn.bufexists('OUTLINE') == 0 or vim.fn.bufwinnr('OUTLINE') == -1 then
+        vim.cmd('SymbolsOutlineOpen')
+        -- timeout
+        vim.defer_fn(function()
+          vim.api.nvim_set_current_win(currwin)
+        end, 200)
+      end
+    end, 10)
   end
 })
