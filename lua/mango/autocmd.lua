@@ -42,24 +42,13 @@ vim.api.nvim_create_autocmd('VimLeave', {
 })
 
 -- on buff enter and lsp active, show symbols
-vim.api.nvim_create_autocmd('BufEnter', {
+vim.api.nvim_create_autocmd('LspAttach', {
   group    = 'bufcheck',
   pattern  = '*',
   callback = function()
     local currwin = vim.api.nvim_get_current_win()
-    local bufnr = vim.api.nvim_get_current_buf()
-    vim.defer_fn(function()
-      -- if the outline buffer doesn't exist, or if its hidden open it
-      if vim.fn.bufexists('DocsView') == 0 or vim.fn.bufwinnr('DocsView') == -1 then
-        -- print('DocsViewOpen')
-      end
-      if vim.fn.bufexists('OUTLINE') == 0 or vim.fn.bufwinnr('OUTLINE') == -1 then
-        vim.cmd('SymbolsOutlineOpen')
-        -- timeout
-        vim.defer_fn(function()
-          vim.api.nvim_set_current_win(currwin)
-        end, 200)
-      end
-    end, 10)
+    if vim.fn.bufexists('OUTLINE') == 0 or vim.fn.bufwinnr('OUTLINE') == -1 then
+      vim.cmd('SymbolsOutlineOpen')
+    end
   end
 })

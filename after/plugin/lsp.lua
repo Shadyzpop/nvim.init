@@ -3,51 +3,20 @@ local lsp = require('lsp-zero')
 local lspconfig = require('lspconfig')
 local configs = require('lspconfig.configs')
 
-lsp.preset('recommended')
-
-lsp.ensure_installed({
-  "tsserver",
-  "lua_ls",
-  "rust_analyzer",
-  "gopls",
-  "cssls",
-  "pylsp",
-  -- "solidity",
-  "svelte",
-  "tailwindcss",
-})
-
--- Fix Undefined global 'vim'
--- lsp.configure('sumneko_lua', {
---   settings = {
---     Lua = {
---       diagnostics = {
---         globals = { 'vim' }
---       }
---     }
---   }
--- })
-
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-require'nvim-treesitter.configs'.setup {
+require 'nvim-treesitter.configs'.setup {
   autotag = {
     enable = true,
   }
 }
+
+require("luasnip.loaders.from_snipmate").lazy_load()
 require('nvim-ts-autotag').setup()
 local cmp = require("cmp")
-
-local cmp_mappings = lsp.defaults.cmp_mappings({
-  ['<Tab>'] = cmp.mapping(function(fallback)
-    if cmp.visible() then
-      cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-    elseif require('luasnip').expand_or_jumpable() then
-      require('luasnip').expand_or_jump()
-    else
-      fallback()
-    end
-  end, { 'i', 's' }),
-  ['<S-Tab'] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), { "i", "s" }),
+local cmp_action = require('lsp-zero').cmp_action()
+local cmp_mappings = cmp.mapping.preset.insert({
+  ['<Tab>'] = cmp_action.luasnip_supertab(),
+  ['<S-Tab'] = cmp_action.luasnip_shift_supertab(),
   ['<C-y'] = cmp.mapping.confirm({ select = true }),
   ['<C-Space>'] = cmp.mapping.complete(),
   ['<C-u>'] = cmp.mapping.scroll_docs(-4),
@@ -56,33 +25,22 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
   ['<CR>'] = vim.NIL,
 })
 
+-- mapping didnt work from the preset for some reason?
+-- vim.keymap.set("i", "<S-Tab>", cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }))
+
 cmp.event:on(
   'confirm_done',
   cmp_autopairs.on_confirm_done()
 )
 
-lsp.set_preferences({
-  suggest_lsp_servers = false,
-  sign_icons = {
-    error = 'E',
-    warn = 'W',
-    hint = 'H',
-    info = 'I'
-  }
-})
-
-lsp.setup_nvim_cmp({
+cmp.setup({
   mapping = cmp_mappings,
 })
 
 lsp.on_attach(function(client, bufnr)
   local opts = { buffer = bufnr, remap = false }
 
-  if client.name == "eslint" then
-    vim.cmd.LspStop('eslint')
-    return
-  end
-
+  lsp.default_keymaps({ buffer = bufnr })
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
   vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
@@ -95,6 +53,29 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
 end)
 
+require('mason').setup({})
+require('mason-lspconfig').setup({
+  ensure_installed = {
+    "tsserver",
+    "lua_ls",
+    "rust_analyzer",
+    "gopls",
+    "cssls",
+    "pylsp",
+    -- "solidity",
+    "svelte",
+    "tailwindcss",
+  },
+  handlers = {
+    lsp.default_setup,
+    lua_ls = function()
+      -- (Optional) configure lua language server
+      local lua_opts = lsp.nvim_lua_ls()
+      require('lspconfig').lua_ls.setup(lua_opts)
+    end,
+  },
+})
+
 configs.solidity = {
   default_config = {
     cmd = { 'nomicfoundation-solidity-language-server', '--stdio' },
@@ -104,22 +85,20 @@ configs.solidity = {
   },
 }
 
-lsp.nvim_workspace()
-lsp.setup()
-
-vim.diagnostic.config({
-  virtual_text = true,
+require("conform").setup({
+  formatters_by_ft = {
+    lua = { "stylua" },
+    javascript = { "prettier", "prettierd" },
+    python = { "black" },
+    rust = { "rustfmt" },
+    go = { "gofmt" },
+    typescript = { "prettier", "prettierd" },
+  }
 })
 
--- local capabilities = vim.lsp.protocol.make_client_capabilities()
--- capabilities.textDocument.foldingRange = {
---     dynamicRegistration = false,
---     lineFoldingOnly = true
--- }
--- local language_servers = require("lspconfig").util.available_servers() -- or list servers manually like {'gopls', 'clangd'}
--- for _, ls in ipairs(language_servers) do
---     require('lspconfig')[ls].setup({
---         capabilities = capabilities
---         -- you can add other fields for setting up lsp server in this table
---     })
--- end
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*",
+  callback = function(args)
+    require("conform").format({ bufnr = args.buf })
+  end
+})

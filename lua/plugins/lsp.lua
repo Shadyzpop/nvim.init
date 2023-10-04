@@ -2,7 +2,7 @@ return {
   -- LSP ZERO
   {
     "VonHeikemen/lsp-zero.nvim",
-    branch = "v1.x",
+    branch = "v3.x",
     dependencies = {
       -- LSP Support
       { "neovim/nvim-lspconfig" },
@@ -68,5 +68,20 @@ return {
         },
       }
     end
-  }
+  },
+
+  -- foratter
+  {
+    'stevearc/conform.nvim',
+    opts = {}
+  },
+
+  -- overseer
+  {
+    'stevearc/overseer.nvim',
+    opts = {},
+    config = function()
+      require('overseer').setup()
+    end
+  },
 }

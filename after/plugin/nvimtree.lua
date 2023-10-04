@@ -10,4 +10,4 @@ vim.opt.termguicolors = true
 -- empty setup using defaults
 require("nvim-tree").setup()
 
-vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeFocus<cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { noremap = true, silent = true })
