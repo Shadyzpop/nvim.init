@@ -41,3 +41,4 @@
 --   vim.cmd("highlight ColorColumn ctermbg=0 guibg=#1e222a")
 --   vim.g.github_theme_style = next_theme
 -- end, { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>th", "<cmd>Telescope colorscheme<cr>", { noremap = true, silent = true })

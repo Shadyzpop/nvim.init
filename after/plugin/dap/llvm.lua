@@ -42,7 +42,8 @@ dap.configurations.rust = {
     request = 'launch',
     program = function()
       vim.cmd('!cargo build')
-      return vim.fn.getcwd() .. '/target/debug/' .. vim.fn.input('Ex Name: ')
+      local current_workplace_name = vim.fn.getcwd():match('([^/]+)$')
+      return vim.fn.getcwd() .. '/target/debug/' .. vim.fn.input('Path to executable: ', current_workplace_name)
     end,
     cwd = '${workspaceFolder}',
     stopOnEntry = false,

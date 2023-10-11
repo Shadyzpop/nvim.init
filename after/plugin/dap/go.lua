@@ -15,7 +15,7 @@ dap.configurations.go = {
     type = "delve",
     name = "Debug",
     request = "launch",
-    program = "${file}"
+    program = "./${relativeFileDirname}",
   },
   {
     type = "delve",

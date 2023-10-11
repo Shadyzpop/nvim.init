@@ -49,3 +49,5 @@ set.splitright = true
 --
 g.omni_sql_default_compl_type = "syntax"
 g.ftplugin_sql_omni_key = "<C-x><C-o>"
+
+vim.opt.termguicolors = true

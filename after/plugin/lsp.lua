@@ -11,12 +11,13 @@ require 'nvim-treesitter.configs'.setup {
 }
 
 require("luasnip.loaders.from_snipmate").lazy_load()
+local luasnip = require("luasnip")
 require('nvim-ts-autotag').setup()
 local cmp = require("cmp")
 local cmp_action = require('lsp-zero').cmp_action()
 local cmp_mappings = cmp.mapping.preset.insert({
   ['<Tab>'] = cmp_action.luasnip_supertab(),
-  ['<S-Tab'] = cmp_action.luasnip_shift_supertab(),
+  ['<S-Tab'] = vim.NIL,
   ['<C-y'] = cmp.mapping.confirm({ select = true }),
   ['<C-Space>'] = cmp.mapping.complete(),
   ['<C-u>'] = cmp.mapping.scroll_docs(-4),
@@ -25,8 +26,13 @@ local cmp_mappings = cmp.mapping.preset.insert({
   ['<CR>'] = vim.NIL,
 })
 
--- mapping didnt work from the preset for some reason?
--- vim.keymap.set("i", "<S-Tab>", cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }))
+vim.keymap.set("i", "<S-Tab>", function()
+  if luasnip.expandable() then
+    luasnip.expand()
+  else
+    cmp.mapping.select_prev_item()
+  end
+end, { noremap = true, silent = true, expr = false })
 
 cmp.event:on(
   'confirm_done',
@@ -93,12 +99,20 @@ require("conform").setup({
     rust = { "rustfmt" },
     go = { "gofmt" },
     typescript = { "prettier", "prettierd" },
+    ["*"] = { "codespell" },
+    -- Use the "_" filetype to run formatters on filetypes that don't
+    -- have other formatters configured.
+    ["_"] = { "trim_whitespace" },
+  },
+  format_on_save = {
+    lsp_fallback = true,
+    timeout_ms = 500,
   }
 })
 
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*",
-  callback = function(args)
-    require("conform").format({ bufnr = args.buf })
-  end
-})
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--   pattern = "*",
+--   callback = function(args)
+--     require("conform").format({ bufnr = args.buf })
+--   end
+-- })
