@@ -6,7 +6,7 @@ local lualine = require('lualine')
 -- Color table for highlights
 -- stylua: ignore
 local colors = {
-  bg       = '#181825',
+  bg       = '#100F0F',
   fg       = '#bbc2cf',
   yellow   = '#ECBE7B',
   cyan     = '#008080',
@@ -78,22 +78,23 @@ local function ins_right(component)
   table.insert(config.sections.lualine_x, component)
 end
 
-ins_left {
-  function()
-    return ''
-  end,
-  color = { fg = colors.blue },      -- Sets highlighting of component
-  padding = { left = 0, right = 1 }, -- We don't need space before this
-}
+-- ins_left {
+--   function()
+--     return ''
+--   end,
+--   color = { fg = colors.blue },      -- Sets highlighting of component
+--   padding = { left = 0, right = 1 }, -- We don't need space before this
+-- }
 
 ins_left {
   -- mode component
   function()
     local mode_char = {
-      i = 'I',
-      n = 'N',
-      c = 'C',
-      V = 'V',
+      i = 'Ins',
+      n = 'Nor',
+      c = 'Com',
+      V = 'Vis',
+      [''] = 'V-B',
     }
     -- mode or default nothing
     return mode_char[vim.fn.mode()] or ' * '
@@ -158,11 +159,34 @@ ins_left {
   },
 }
 
--- Insert mid section. You can make any number of sections in neovim :)
--- for lualine it's any number greater then 2
 ins_left {
   function()
-    return '%='
+    return ''
+  end,
+}
+
+ins_left {
+  function()
+    local msg = ''
+    local cp_enabled = vim.call('copilot#Enabled')
+    if cp_enabled == 1 then
+      msg = 'ON'
+    else
+      msg = 'OFF'
+    end
+    return msg
+  end,
+  icon = 'GCP:',
+  color = function()
+    local fg = ''
+    local cp_enabled = vim.call('copilot#Enabled')
+    if cp_enabled == 1 then
+      fg = colors.green
+    else
+      fg = colors.red
+    end
+
+    return { fg = fg, gui = 'bold' }
   end,
 }
 
@@ -188,7 +212,7 @@ ins_left {
     end
     return msg
   end,
-  icon = '>>',
+  icon = 'LSP:',
   color = { fg = '#ffffff', gui = 'bold' },
 }
 
@@ -208,14 +232,6 @@ ins_right {
     removed = { fg = colors.red },
   },
   cond = conditions.hide_in_width,
-}
-
-ins_right {
-  function()
-    return ''
-  end,
-  color = { fg = colors.blue },
-  padding = { left = 1 },
 }
 
 -- Now don't forget to initialize lualine

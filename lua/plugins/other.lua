@@ -6,7 +6,7 @@ return {
     opts = {
       disabled_filetypes = {
         "qf", "netrw", "NvimTree", "lazy", "mason", "Outline", "text", "harpoon", "help", "lspinfo",
-        "OverseerList" },
+        "OverseerList", "oil", "fugitive" },
     }
   },
 }

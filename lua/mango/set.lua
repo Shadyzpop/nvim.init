@@ -1,14 +1,14 @@
 local set = vim.opt
----@diagnostic disable-next-line: unused-local
 local g = vim.g
 
 g.mapleader = " "
 
 local TAB_WIDTH = 2
 
-set.guicursor = ""
+set.guicursor = "n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor2/lCursor2,r-cr:hor20,o:hor50"
 set.nu = true
 set.relativenumber = true
+set.cursorline = true
 
 -- disable mouse
 set.mouse = nil
@@ -39,11 +39,13 @@ set.isfname:append("@-@")
 set.updatetime = 50
 set.colorcolumn = "80"
 set.cmdheight = 1
+set.laststatus = 3
 -- set.showcmd = false
 
 set.splitbelow = true
 set.splitright = true
 
+set.autowrite = true
 -- vim.api.nvim_set_keymap("i", "<Space>", string.rep(" ", TAB_WIDTH), {noremap = true, silent = true})
 -- let g:omni_sql_default_compl_type = 'syntax'
 --

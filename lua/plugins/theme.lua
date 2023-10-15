@@ -23,6 +23,7 @@ return {
       vim.cmd("colorscheme catppuccin-mocha")
     end,
   },
+  -- { 'stevedylandev/flexoki-nvim', name = 'flexoki' },
 
   -- highlighter
   {
