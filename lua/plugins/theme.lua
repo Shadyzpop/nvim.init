@@ -10,20 +10,20 @@ return {
   -- {
   --   "rebelot/kanagawa.nvim",
   -- },
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    priority = 1000,
-    config = function()
-      require("catppuccin").setup({
-        dim_inactive = {
-          enabled = true,
-        }
-      })
-      vim.cmd("colorscheme catppuccin-mocha")
-    end,
-  },
-  -- { 'stevedylandev/flexoki-nvim', name = 'flexoki' },
+  -- {
+  --   "catppuccin/nvim",
+  --   name = "catppuccin",
+  --   priority = 1000,
+  --   config = function()
+  --     require("catppuccin").setup({
+  --       dim_inactive = {
+  --         enabled = true,
+  --       }
+  --     })
+  --     vim.cmd("colorscheme catppuccin-mocha")
+  --   end,
+  -- },
+  { 'stevedylandev/flexoki-nvim', name = 'flexoki' },
 
   -- highlighter
   {

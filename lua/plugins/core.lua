@@ -11,19 +11,19 @@ return {
   },
 
   -- nvim tree
-  {
-    "nvim-tree/nvim-tree.lua",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons",
-      lazy = true,
-    },
-    version = "nightly",
-  },
+  -- {
+  --   "nvim-tree/nvim-tree.lua",
+  --   dependencies = {
+  --     "nvim-tree/nvim-web-devicons",
+  --     lazy = true,
+  --   },
+  --   version = "nightly",
+  -- },
 
   -- indents blankline
-  {
-    "lukas-reineke/indent-blankline.nvim",
-  },
+  -- {
+  --   "lukas-reineke/indent-blankline.nvim",
+  -- },
 
   -- autopairs
   {
@@ -127,11 +127,13 @@ return {
     -- Optional dependencies
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-      require("oil").setup {
+      require("oil").setup({
         -- Your configuration comes here
         -- or leave it empty to use the default settings
         -- refer to the configuration section below
-      }
+      })
+
+      vim.keymap.set("n", "<leader>o", "<cmd>Oil<cr>", { silent = true })
     end,
   },
 }
