@@ -1,5 +1,9 @@
-vim.keymap.set("i", "<C-j>", "copilot#Accept(\"\")", { noremap = true, silent = true, expr = true,
-  replace_keycodes = false })
+vim.keymap.set("i", "<C-j>", "copilot#Accept(\"\")", {
+  noremap = true,
+  silent = true,
+  expr = true,
+  replace_keycodes = false
+})
 vim.keymap.set("i", "<C-i>", "<Plug>(copilot-suggest)", { silent = true })
 vim.keymap.set("i", "<C-k>", "<Plug>(copilot-dismiss)", { silent = true })
 vim.keymap.set("i", "<C-l>", "<Plug>(copilot-next)", { silent = true })

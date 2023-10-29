@@ -6,6 +6,16 @@ g.mapleader = " "
 local TAB_WIDTH = 2
 
 set.guicursor = "n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor2/lCursor2,r-cr:hor20,o:hor50"
+set.listchars = {
+  tab = "→\\ ",
+  -- trail = "·",
+  -- extends = "…",
+  -- precedes = "…",
+  nbsp = "␣",
+  -- eol = "↲",
+}
+set.list = true
+
 set.nu = true
 set.relativenumber = true
 set.cursorline = true

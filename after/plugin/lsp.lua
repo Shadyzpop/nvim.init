@@ -14,9 +14,10 @@ require("luasnip.loaders.from_snipmate").lazy_load()
 local luasnip = require("luasnip")
 require('nvim-ts-autotag').setup()
 local cmp = require("cmp")
-local cmp_action = require('lsp-zero').cmp_action()
+-- local cmp_action = require('lsp-zero').cmp_action()
 local cmp_mappings = cmp.mapping.preset.insert({
-  ['<Tab>'] = cmp_action.luasnip_supertab(),
+  -- ['<Tab>'] = cmp_action.luasnip_supertab(),
+  ['<Tab>'] = vim.NIL,
   ['<S-Tab'] = vim.NIL,
   ['<C-y'] = cmp.mapping.confirm({ select = true }),
   ['<C-Space>'] = cmp.mapping.complete(),
@@ -26,11 +27,17 @@ local cmp_mappings = cmp.mapping.preset.insert({
   ['<CR>'] = vim.NIL,
 })
 
+vim.keymap.set("i", "<Tab>", function()
+  if cmp.visible() then
+    cmp.select_next_item()
+  else
+    vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, true, true), "n")
+  end
+end, { noremap = true, silent = true, expr = false })
+
 vim.keymap.set("i", "<S-Tab>", function()
   if luasnip.expandable() then
     luasnip.expand()
-  else
-    cmp.mapping.select_prev_item()
   end
 end, { noremap = true, silent = true, expr = false })
 
