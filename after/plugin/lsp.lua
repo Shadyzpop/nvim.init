@@ -38,6 +38,8 @@ end, { noremap = true, silent = true, expr = false })
 vim.keymap.set("i", "<S-Tab>", function()
   if luasnip.expandable() then
     luasnip.expand()
+  elseif cmp.visible() then
+    cmp.select_prev_item()
   end
 end, { noremap = true, silent = true, expr = false })
 
