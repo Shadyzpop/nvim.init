@@ -91,6 +91,7 @@ return {
     config = function()
       require('treesitter-context').setup({
         enable = true,
+        multiline_threshold = 10,
       })
     end
   }

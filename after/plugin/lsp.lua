@@ -103,11 +103,13 @@ configs.solidity = {
 require("conform").setup({
   formatters_by_ft = {
     lua = { "stylua" },
-    javascript = { "prettier", "prettierd" },
     python = { "black" },
     rust = { "rustfmt" },
     go = { "gofmt" },
     typescript = { "prettier", "prettierd" },
+    javascript = { "prettier", "prettierd" },
+    javascriptreact = { "prettier", "prettierd" },
+    typescriptreact = { "prettier", "prettierd" },
     ["*"] = { "codespell" },
     -- Use the "_" filetype to run formatters on filetypes that don't
     -- have other formatters configured.
