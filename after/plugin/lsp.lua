@@ -106,10 +106,10 @@ require("conform").setup({
     python = { "black" },
     rust = { "rustfmt" },
     go = { "gofmt" },
-    typescript = { "prettier", "prettierd" },
-    javascript = { "prettier", "prettierd" },
-    javascriptreact = { "prettier", "prettierd" },
-    typescriptreact = { "prettier", "prettierd" },
+    typescript = { "prettierd" },
+    javascript = { "prettierd" },
+    javascriptreact = { "prettierd" },
+    typescriptreact = { "prettierd" },
     ["*"] = { "codespell" },
     -- Use the "_" filetype to run formatters on filetypes that don't
     -- have other formatters configured.

@@ -10,21 +10,6 @@ return {
     end,
   },
 
-  -- nvim tree
-  -- {
-  --   "nvim-tree/nvim-tree.lua",
-  --   dependencies = {
-  --     "nvim-tree/nvim-web-devicons",
-  --     lazy = true,
-  --   },
-  --   version = "nightly",
-  -- },
-
-  -- indents blankline
-  -- {
-  --   "lukas-reineke/indent-blankline.nvim",
-  -- },
-
   -- autopairs
   {
     "windwp/nvim-autopairs",
