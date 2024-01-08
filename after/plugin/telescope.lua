@@ -24,6 +24,8 @@ local def_map = {
     ["<C-s>"] = actions.file_split,
     ["<C-q>"] = actions.smart_send_to_qflist,
     ["<C-l>"] = actions.smart_send_to_loclist,
+    ["<C-j>"] = actions.move_selection_next,
+    ["<C-k>"] = actions.move_selection_previous
   },
 }
 
@@ -34,23 +36,7 @@ require("telescope").setup({
     cache_picker = {
       num_pickers = 10,
     },
-  },
-  pickers = {
-    git_files = {
-      mappings = def_map,
-    },
-    buffers = {
-      mappings = def_map,
-    },
-    find_files = {
-      mappings = def_map,
-    },
-    live_grep = {
-      mappings = def_map,
-    },
-    grep_string = {
-      mappings = def_map,
-    },
+    default_mappings = def_map,
   },
   extensions = {
     fzf = {
@@ -67,7 +53,7 @@ require("telescope").setup({
 vim.keymap.set('n', '<leader>te', builtin.resume, {})
 vim.keymap.set('n', '<leader>cm', builtin.commands, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-vim.keymap.set('n', '<leader>ss', function()
+vim.keymap.set('n', '<leader>sp', function()
   builtin.spell_suggest(
     themes.get_cursor {
       prompt_title = "Spell Suggest",
@@ -78,6 +64,7 @@ vim.keymap.set('n', '<leader>ss', function()
     }
   )
 end)
+vim.keymap.set('n', '<leader>gh', builtin.help_tags, {})
 
 -- files
 vim.keymap.set('n', '<leader>pf', builtin.find_files, {})

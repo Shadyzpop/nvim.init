@@ -1,5 +1,5 @@
 require("mango.set")
 require("mango.lazy")
-require("mango.remap")
+require("mango.keymaps")
 require("mango.theme")
 require("mango.autocmd")
