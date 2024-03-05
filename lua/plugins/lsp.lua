@@ -79,10 +79,6 @@ return {
   -- overseer
   {
     'stevearc/overseer.nvim',
-    opts = {},
-    config = function()
-      require('overseer').setup()
-    end
   },
 
   -- context
