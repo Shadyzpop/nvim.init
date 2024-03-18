@@ -4,15 +4,18 @@ return {
     config = function()
       require("colorizer").setup()
     end,
+  },
+  {
+    "jackMort/ChatGPT.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("chatgpt").setup()
+    end,
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "folke/trouble.nvim",
+      "nvim-telescope/telescope.nvim"
+    }
   }
-  -- better vim
-  -- {
-  --   "m4xshen/hardtime.nvim",
-  --   dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-  --   opts = {
-  --     disabled_filetypes = {
-  --       "qf", "netrw", "NvimTree", "lazy", "mason", "Outline", "text", "harpoon", "help", "lspinfo",
-  --       "OverseerList", "oil", "fugitive" },
-  --   }
-  -- },
 }
