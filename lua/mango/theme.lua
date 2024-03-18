@@ -6,7 +6,7 @@ vim.keymap.set("n", "<leader>th", "<cmd>Telescope colorscheme<cr>", { noremap = 
 
 hl(0, "NvimTreeNormal", { fg = c.light_gray, bg = '#060707' })
 hl(0, "ColorColumn", { fg = c.light_gray, bg = '#343331' })
-hl(0, "CursorLine", { fg = vim.NIL, bg = '#343331' })
+hl(0, "CursorLine", { bg = '#343331' })
 
 -- listchars
 hl(0, "NonText", { fg = c.light_gray })
